@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 # Create your views here.
-from .models import Question,Choice
+from .models import Question
 
 def home(requests):
     all_questions = Question.objects.all()
@@ -18,3 +18,7 @@ def detail(requests,question_id):
         'question': question
     }
     return render(requests, 'polls/detail.html', context=data)
+
+def vote(requests, question_id):
+    question = Question.objects.get(pk=question_id)
+    selected_choice = question.choice_set.get(requests.POST['choice'])
