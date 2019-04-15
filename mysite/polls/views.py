@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from .models import Question
 
@@ -21,4 +21,7 @@ def detail(requests,question_id):
 
 def vote(requests, question_id):
     question = Question.objects.get(pk=question_id)
-    selected_choice = question.choice_set.get(requests.POST['choice'])
+    selected_choice = question.choice_set.get(pk=requests.POST["choice"])
+    selected_choice.votes += 1
+    selected_choice.save()
+    return HttpResponse("voted")
