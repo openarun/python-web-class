@@ -1,6 +1,6 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-Q. {{question.question_text}}
+Question : {{question.question_text}}
 <form action="{% url 'polls:vote' question.id %}" method="POST">
     {% csrf_token %}
     {% for choice in question.choice_set.all %}

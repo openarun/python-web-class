@@ -25,3 +25,14 @@ def vote(requests, question_id):
     selected_choice.votes += 1
     selected_choice.save()
     return HttpResponse("voted")
+
+def results(requests, question_id):
+    question = Question.objects.get(pk=question_id)
+    data = {
+        'question': question
+    }
+    return render(requests, 'polls/results.html', context=data)
+
+
+
+
