@@ -1,11 +1,11 @@
 {% extends 'polls/base.html' %}
 {% block content %}
-<h1>Say me about you !</h1>
-<ul>
+<h3>Questons List</h3>
+<ol>
     {% for question in questions_list %}
         <li><a href="{{question.pk}}">{{question}}</a></li>
     {% endfor %}
-</ul>
+</ol>
 
 {% endblock %}
 
